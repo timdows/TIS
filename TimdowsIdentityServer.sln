@@ -1,0 +1,37 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 15
+VisualStudioVersion = 15.0.26711.1
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "API", "API\API.csproj", "{D723D4C8-A864-44D7-86A9-CB83DE68C4D5}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Client", "Client\Client.csproj", "{F8CCE9FB-2060-4777-A41A-F5EF3F68A104}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TimdowsIdentityServer", "TimdowsIdentityServer\TimdowsIdentityServer.csproj", "{E1E12707-146E-4FFE-A742-193A85741A11}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{D723D4C8-A864-44D7-86A9-CB83DE68C4D5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D723D4C8-A864-44D7-86A9-CB83DE68C4D5}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D723D4C8-A864-44D7-86A9-CB83DE68C4D5}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D723D4C8-A864-44D7-86A9-CB83DE68C4D5}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F8CCE9FB-2060-4777-A41A-F5EF3F68A104}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F8CCE9FB-2060-4777-A41A-F5EF3F68A104}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F8CCE9FB-2060-4777-A41A-F5EF3F68A104}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F8CCE9FB-2060-4777-A41A-F5EF3F68A104}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E1E12707-146E-4FFE-A742-193A85741A11}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E1E12707-146E-4FFE-A742-193A85741A11}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E1E12707-146E-4FFE-A742-193A85741A11}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E1E12707-146E-4FFE-A742-193A85741A11}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {62FC231F-EDDD-489C-81CA-0279068F9F93}
+	EndGlobalSection
+EndGlobal
