@@ -18,7 +18,7 @@ namespace Client
 
 		public class Test
 		{
-			public async Task RunAsync()
+			public async Task RunAsync1()
 			{
 				// discover endpoints from metadata
 				var disco = await DiscoveryClient.GetAsync("http://localhost:5000");
@@ -49,6 +49,25 @@ namespace Client
 					var content = await response.Content.ReadAsStringAsync();
 					Console.WriteLine(JArray.Parse(content));
 				}
+			}
+
+			public async Task RunAsync()
+			{
+				// discover endpoints from metadata
+				var disco = await DiscoveryClient.GetAsync("http://localhost:5000");
+
+				// request token
+				var tokenClient = new TokenClient(disco.TokenEndpoint, "ro.client", "testsecret123");
+				var tokenResponse = await tokenClient.RequestResourceOwnerPasswordAsync("alice", "password", "houseDB");
+
+				if (tokenResponse.IsError)
+				{
+					Console.WriteLine(tokenResponse.Error);
+					return;
+				}
+
+				Console.WriteLine(tokenResponse.Json);
+				Console.WriteLine("\n\n");
 			}
 		}
     }

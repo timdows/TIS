@@ -15,8 +15,8 @@ namespace TimdowsIdentityServer
 			services.AddIdentityServer()
 				.AddDeveloperSigningCredential()
 				.AddInMemoryApiResources(Config.GetApiResources())
-				.AddInMemoryClients(Config.GetClients());
-				//.AddTemporarySigningCredential();
+				.AddInMemoryClients(Config.GetClients())
+				.AddTestUsers(Config.GetUsers());
 		}
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
