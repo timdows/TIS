@@ -57,8 +57,8 @@ namespace Client
 				var disco = await DiscoveryClient.GetAsync("http://localhost:5000");
 
 				// request token
-				var tokenClient = new TokenClient(disco.TokenEndpoint, "ro.client", "testsecret123");
-				var tokenResponse = await tokenClient.RequestResourceOwnerPasswordAsync("alice", "password", "houseDB");
+				var tokenClient = new TokenClient(disco.TokenEndpoint, "angularjsclient");
+				var tokenResponse = await tokenClient.RequestResourceOwnerPasswordAsync("test@timdows.com", "z2MMpN2CXU10d0hPNVGA!", "openid");
 
 				if (tokenResponse.IsError)
 				{

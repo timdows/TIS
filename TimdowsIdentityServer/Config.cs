@@ -1,6 +1,8 @@
-﻿using IdentityServer4.Models;
+﻿using IdentityModel;
+using IdentityServer4.Models;
 using IdentityServer4.Test;
 using System.Collections.Generic;
+using System.Security.Claims;
 
 namespace TimdowsIdentityServer
 {
@@ -53,21 +55,20 @@ namespace TimdowsIdentityServer
 
 		public static List<TestUser> GetUsers()
 		{
-			return new List<TestUser>
+			var users = new List<TestUser>();
+			var user = new TestUser
 			{
-				new TestUser
-				{
-					SubjectId = "1231233",
-					Username = "alice",
-					Password = "password"
-				},
-				new TestUser
-				{
-					SubjectId = "2",
-					Username = "bob",
-					Password = "password"
-				}
+				SubjectId = "1",
+				Username = "test",
+				Password = "test",
+				Claims = new List<Claim>()
 			};
+			user.Claims.Add(new Claim(JwtClaimTypes.Role, "houseDB.user"));
+			user.Claims.Add(new Claim(JwtClaimTypes.Scope, "houseDB"));
+
+			users.Add(user);
+
+			return users;
 		}
 	}
 }
