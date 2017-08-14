@@ -1,8 +1,9 @@
 ﻿using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
+using System.IO;
+using System.Security.Cryptography.X509Certificates;
 
 namespace TimdowsIdentityServer
 {
@@ -14,8 +15,10 @@ namespace TimdowsIdentityServer
         {
 			services.AddMvc();
 
+			var cert = new X509Certificate2(Path.Combine(Directory.GetCurrentDirectory(), "tis.timdows.pfx"), "houseDB321");
+
 			services.AddIdentityServer()
-				.AddDeveloperSigningCredential()
+				.AddSigningCredential(cert)
 				.AddInMemoryApiResources(Config.GetApiResources())
 				.AddInMemoryClients(Config.GetClients())
 				.AddTestUsers(Config.GetUsers());

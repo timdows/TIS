@@ -1,9 +1,8 @@
-﻿using Microsoft.AspNetCore.Builder;
+﻿using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.Authentication;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
-using Microsoft.AspNetCore.Authentication.JwtBearer;
 
 namespace API
 {
@@ -12,10 +11,10 @@ namespace API
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-			services.AddAuthentication(o =>
+			services.AddAuthentication(options =>
 			{
-				o.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
-				o.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
+				options.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
+				options.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
 			});
 
 			services.AddJwtBearerAuthentication(o =>
@@ -31,8 +30,9 @@ namespace API
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IHostingEnvironment env, ILoggerFactory loggerFactory)
         {
-			loggerFactory.AddConsole();
-			loggerFactory.AddDebug();
+			loggerFactory.AddConsole(LogLevel.Debug);
+			//loggerFactory.AddDebug();
+			
 
 			//var identityServerAuthenticationOptions = new IdentityServerAuthenticationOptions
 			//{

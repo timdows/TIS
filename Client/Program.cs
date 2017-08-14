@@ -57,8 +57,8 @@ namespace Client
 				var disco = await DiscoveryClient.GetAsync("http://localhost:5000");
 
 				// request token
-				var tokenClient = new TokenClient(disco.TokenEndpoint, "angularjsclient");
-				var tokenResponse = await tokenClient.RequestResourceOwnerPasswordAsync("test@timdows.com", "z2MMpN2CXU10d0hPNVGA!", "openid");
+				var tokenClient = new TokenClient(disco.TokenEndpoint, "ro.client", "testsecret123");
+				var tokenResponse = await tokenClient.RequestResourceOwnerPasswordAsync("test", "z2MMpN2CXU10d0hPNVGA!", "houseDB");
 
 				if (tokenResponse.IsError)
 				{
@@ -68,6 +68,22 @@ namespace Client
 
 				Console.WriteLine(tokenResponse.Json);
 				Console.WriteLine("\n\n");
+
+				// call api
+				var client = new HttpClient();
+				var accessToken = tokenResponse.AccessToken;
+				client.SetBearerToken(accessToken);
+
+				var response = await client.GetAsync("http://localhost:5001/api/identity");
+				if (!response.IsSuccessStatusCode)
+				{
+					Console.WriteLine(response.StatusCode);
+				}
+				else
+				{
+					var content = await response.Content.ReadAsStringAsync();
+					Console.WriteLine(JArray.Parse(content));
+				}
 			}
 		}
     }

@@ -13,7 +13,7 @@ namespace TimdowsIdentityServer
         public static IWebHost BuildWebHost(string[] args) =>
             WebHost.CreateDefaultBuilder(args)
 				.UseKestrel()
-				.UseUrls("http://localhost:5000")
+				.UseUrls("http://localhost:5010")
 				.UseStartup<Startup>()
                 .Build();
     }
