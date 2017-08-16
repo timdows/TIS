@@ -21,7 +21,7 @@ namespace Client
 			public async Task RunAsync1()
 			{
 				// discover endpoints from metadata
-				var disco = await DiscoveryClient.GetAsync("https://tis.timdows.com");
+				var disco = await DiscoveryClient.GetAsync("https://wtis.timdows.com");
 
 				// request token
 				var tokenClient = new TokenClient(disco.TokenEndpoint, "client", "testsecret123");
