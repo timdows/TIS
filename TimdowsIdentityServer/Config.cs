@@ -3,6 +3,7 @@ using IdentityServer4.Models;
 using IdentityServer4.Test;
 using System.Collections.Generic;
 using System.Security.Claims;
+using TimdowsIdentityServer.Settings;
 
 namespace TimdowsIdentityServer
 {
@@ -16,59 +17,43 @@ namespace TimdowsIdentityServer
 			};
 		}
 
-		public static IEnumerable<Client> GetClients()
+		public static IEnumerable<Client> GetClients(List<ROClient> roClients)
 		{
-			return new List<Client>
+			var clients = new List<Client>();
+			foreach(var roClient in roClients)
 			{
-				new Client
+				// resource owner password grant client
+				clients.Add(new Client
 				{
-					ClientId = "client",
-
-					// no interactive user, use the clientid/secret for authentication
-					AllowedGrantTypes = GrantTypes.ClientCredentials,
-
-					// secret for authentication
-					ClientSecrets =
-					{
-						new Secret("testsecret123".Sha256())
-					},
-
-					// scopes that client has access to
-					AllowedScopes = { "houseDB" }
-				},
-
-				 // resource owner password grant client
-				new Client
-				{
-					ClientId = "ro.client",
+					ClientId = roClient.ClientId,
 					AllowedGrantTypes = GrantTypes.ResourceOwnerPassword,
-
-					ClientSecrets =
-					{
-						new Secret("testsecret123".Sha256())
-					},
+					ClientSecrets = { new Secret(roClient.Secret.Sha256()) },
 					AllowedScopes = { "houseDB" }
-				}
+				});
+			}
 
-			};
+			return clients;
 		}
 
-		public static List<TestUser> GetUsers()
+		public static List<TestUser> GetUsers(List<User> users)
 		{
-			var users = new List<TestUser>();
-			var user = new TestUser
+			var testUsers = new List<TestUser>();
+			foreach (var user in users)
 			{
-				SubjectId = "1",
-				Username = "test",
-				Password = "test",
-				Claims = new List<Claim>()
-			};
-			user.Claims.Add(new Claim(JwtClaimTypes.Role, "houseDB.user"));
-			user.Claims.Add(new Claim(JwtClaimTypes.Scope, "houseDB"));
-
-			users.Add(user);
-
-			return users;
+				testUsers.Add(new TestUser
+				{
+					SubjectId = user.SubjectId,
+					Username = user.Name,
+					Password = user.Password,
+					Claims = new List<Claim>
+					{
+						//new Claim(JwtClaimTypes.Role, "houseDB.user"),
+						new Claim(JwtClaimTypes.Scope, "houseDB")
+					}
+				});
+			}
+			
+			return testUsers;
 		}
 	}
 }
