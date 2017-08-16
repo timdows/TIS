@@ -16,10 +16,7 @@ namespace TimdowsIdentityServer
         {
 			var cert = new X509Certificate2(Path.Combine(Directory.GetCurrentDirectory(), "tis.timdows.pfx"), "houseDB321");
 
-			services.AddIdentityServer(options =>
-			{
-				options.IssuerUri = "https://tis.timdows.com";
-			})
+			services.AddIdentityServer()
 				.AddSigningCredential(cert)
 				.AddInMemoryApiResources(Config.GetApiResources())
 				.AddInMemoryClients(Config.GetClients())
