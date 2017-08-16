@@ -13,7 +13,7 @@ namespace Client
             Console.WriteLine("Hello World!");
 
 			var test = new Test();
-			test.RunAsync().GetAwaiter().GetResult();
+			test.RunAsync1().GetAwaiter().GetResult();
 		}
 
 		public class Test
@@ -21,7 +21,7 @@ namespace Client
 			public async Task RunAsync1()
 			{
 				// discover endpoints from metadata
-				var disco = await DiscoveryClient.GetAsync("http://localhost:5000");
+				var disco = await DiscoveryClient.GetAsync("https://tis.timdows.com");
 
 				// request token
 				var tokenClient = new TokenClient(disco.TokenEndpoint, "client", "testsecret123");
