@@ -19,9 +19,9 @@ namespace API
 
 			services.AddJwtBearerAuthentication(o =>
 			{
-				o.Authority = "http://localhost:5000";
+				o.Authority = "https://tis.timdows.com";
 				o.Audience = "houseDB";
-				o.RequireHttpsMetadata = false;
+				o.RequireHttpsMetadata = true;
 			});
 
 			services.AddMvc();

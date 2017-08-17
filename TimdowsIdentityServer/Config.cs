@@ -35,22 +35,24 @@ namespace TimdowsIdentityServer
 			return clients;
 		}
 
-		public static List<TestUser> GetUsers(List<User> users)
+		public static List<TestUser> GetUsers(List<IdentityUser> users)
 		{
 			var testUsers = new List<TestUser>();
 			foreach (var user in users)
 			{
-				testUsers.Add(new TestUser
+				var testUser = new TestUser
 				{
 					SubjectId = user.SubjectId,
 					Username = user.Name,
 					Password = user.Password,
-					Claims = new List<Claim>
-					{
-						//new Claim(JwtClaimTypes.Role, "houseDB.user"),
-						new Claim(JwtClaimTypes.Scope, "houseDB")
-					}
-				});
+					Claims = new List<Claim>()
+				};
+				foreach(var scope in user.Scopes)
+				{
+					testUser.Claims.Add(new Claim(JwtClaimTypes.Scope, scope.Name));
+				}
+
+				testUsers.Add(testUser);
 			}
 			
 			return testUsers;
