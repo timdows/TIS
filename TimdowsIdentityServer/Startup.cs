@@ -36,15 +36,14 @@ namespace TimdowsIdentityServer
 		public void ConfigureServices(IServiceCollection services)
         {
 			var cert = new X509Certificate2(Path.Combine(Directory.GetCurrentDirectory(), "tis.timdows.pfx"), "houseDB321");
-			var identityServerSettings = Configuration.GetSection("IdentityServer").Get<IdentityServerSettings>();
+			//var identityServerSettings = Configuration.GetSection("IdentityServer").Get<IdentityServerSettings>();
 
 			services.AddIdentityServer()
 				.AddSigningCredential(cert)
 				.AddInMemoryApiResources(Config.GetApiResources())
-				.AddInMemoryClients(Config.GetClients(identityServerSettings.ROClients))
-				.AddTestUsers(Config.GetUsers(identityServerSettings.Users));
+				.AddInMemoryClients(Config.GetClients());
 
-			services.Configure<IdentityServerSettings>(Configuration.GetSection("IdentityServer"));
+			//services.Configure<IdentityServerSettings>(Configuration.GetSection("IdentityServer"));
 		}
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

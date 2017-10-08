@@ -1,0 +1,8 @@
+version: '3'
+
+services:
+  timdowsidentityserver:
+    image: timdowsidentityserver
+    build:
+      context: ./TimdowsIdentityServer
+      dockerfile: Dockerfile

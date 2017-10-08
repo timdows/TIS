@@ -1,17 +1,18 @@
 <Project Sdk="Microsoft.NET.Sdk.Web">
 
 	<PropertyGroup>
-		<TargetFramework>netcoreapp1.1</TargetFramework>
+		<TargetFramework>netcoreapp2.0</TargetFramework>
 		<OutputType>Exe</OutputType>
 		<RuntimeIdentifiers>win10-x64</RuntimeIdentifiers>
+		<DockerComposeProjectPath>..\docker-compose.dcproj</DockerComposeProjectPath>
 	</PropertyGroup>
 
 	<ItemGroup>
-		<PackageReference Include="IdentityServer4" Version="1.5.2" />
-		<PackageReference Include="Microsoft.AspNetCore" Version="1.1.2" />
+		<PackageReference Include="IdentityServer4" Version="2.0.0" />
+		<PackageReference Include="Microsoft.AspNetCore" Version="2.0.0" />
 		<PackageReference Include="Serilog.Extensions.Logging.File" Version="1.1.0" />
 		<PackageReference Include="Serilog.Settings.Configuration" Version="2.4.0" />
-		<PackageReference Include="Serilog.Sinks.Literate" Version="2.1.0" />
+		<PackageReference Include="Serilog.Sinks.Literate" Version="3.0.0" />
 		<PackageReference Include="Serilog.Sinks.RollingFile" Version="3.3.0" />
 	</ItemGroup>
 
